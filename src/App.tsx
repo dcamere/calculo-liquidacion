@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Input, Button } from 'antd';
 import { DefaultLayout } from './Layout';
 import 'antd/dist/reset.css';
+import './index.css'
 
 interface MyFormState {
   inputSueldoBruto: string;
@@ -33,7 +34,6 @@ const MyForm: React.FC = () => {
   };
 
   const handleOnBlur = () => {
-    console.log("hey") 
     const calculoVacacionesPendientes = (parseFloat(state.inputMesesEnEmpresa) * 2.5).toString();
 
     setState((prevState) => ({
@@ -67,43 +67,29 @@ const MyForm: React.FC = () => {
         value={state.inputSueldoBruto}
         onChange={(e) => handleInputChange(e, 'inputSueldoBruto')}
       />
-      <br />
-      <br />
       <Input
         placeholder="Meses en la empresa"
         value={state.inputMesesEnEmpresa}
         onChange={(e) => handleInputChange(e, 'inputMesesEnEmpresa')}
         onBlur={handleOnBlur}
       />
-      <br /> 
-      <br />
       <Input
         placeholder="Días de vacaciones pendientes"
         value={state.inputVacacionesPendientes}
         onChange={(e) => handleInputChange(e, 'inputVacacionesPendientes')}
       />
-      <br /> 
-      <br />
       <Input
         placeholder="Días transcurridos desde el último pago de gratificación"
         value={state.inputDiasDesdeUltimaGratificacion}
         onChange={(e) => handleInputChange(e, 'inputDiasDesdeUltimaGratificacion')}
       />
-      <br /> 
-      <br />
       <Button type="primary" onClick={handleCalculate}>
         Calcular liquidación
       </Button>
-      <br />
-      <br />
       <span>Liquidación:</span>
-      <br /><br />
       <span>CTS: s/ {state.cts}</span>
-      <br /><br />
       <span>Vacaciones Truncas: s/ {state.vacacionesTruncas}</span>
-      <br /><br />
       <span>Gratificación Trunca: s/ {state.gratificationTrunca}</span>
-      <br /><br />
       <span>Total: <b>s/ {parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca)}</b></span>
     </DefaultLayout>
   );
