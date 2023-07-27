@@ -43,21 +43,26 @@ const MyForm: React.FC = () => {
   }
 
   const handleCalculate = () => {
-    const sueldo = parseFloat(state.inputSueldoBruto);
-    const mesesLaborados = parseFloat(state.inputMesesEnEmpresa);
-    const vacacionesPendientes = parseFloat(state.inputVacacionesPendientes);
-    const diasDesdeUltimaGratificacion = parseFloat(state.inputDiasDesdeUltimaGratificacion);
-    const newCts = sueldo + Math.round((sueldo / 6) / (mesesLaborados * 30));
-    const newVacacionesTruncas = Math.round((sueldo / 360) * vacacionesPendientes);
-    const newGratificationTrunca = Math.round((sueldo / 6) * (diasDesdeUltimaGratificacion / 30));
-
-
-    setState((prevState) => ({
-      ...prevState,
-      cts: newCts.toString(),
-      vacacionesTruncas: newVacacionesTruncas.toString(),
-      gratificationTrunca: newGratificationTrunca.toString(),
-    }));
+    console.log(state.inputSueldoBruto)
+    if (state.inputSueldoBruto !== "" && state.inputMesesEnEmpresa !== "" && state.inputVacacionesPendientes !== "" && state.inputDiasDesdeUltimaGratificacion !== "") {
+      const sueldo = parseFloat(state.inputSueldoBruto);
+      const mesesLaborados = parseFloat(state.inputMesesEnEmpresa);
+      const vacacionesPendientes = parseFloat(state.inputVacacionesPendientes);
+      const diasDesdeUltimaGratificacion = parseFloat(state.inputDiasDesdeUltimaGratificacion);
+      const newCts = sueldo + Math.round((sueldo / 6) / (mesesLaborados * 30));
+      const newVacacionesTruncas = Math.round((sueldo / 360) * vacacionesPendientes);
+      const newGratificationTrunca = Math.round((sueldo / 6) * (diasDesdeUltimaGratificacion / 30));
+  
+  
+      setState((prevState) => ({
+        ...prevState,
+        cts: newCts.toString(),
+        vacacionesTruncas: newVacacionesTruncas.toString(),
+        gratificationTrunca: newGratificationTrunca.toString(),
+      }));
+    } else {
+      alert("Completa todos los campos primero!")
+    }
   };
 
   return (
@@ -90,7 +95,7 @@ const MyForm: React.FC = () => {
       <span>CTS: s/ {state.cts}</span>
       <span>Vacaciones Truncas: s/ {state.vacacionesTruncas}</span>
       <span>Gratificación Trunca: s/ {state.gratificationTrunca}</span>
-      <span>Total: <b>s/ { isNaN((parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca))) ? 0 : (parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca)).toString()}</b></span>
+      <span>Total: <b>s/ { isNaN((parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca))) ? '' : (parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca)).toString()}</b></span>
     </DefaultLayout>
   );
 };
