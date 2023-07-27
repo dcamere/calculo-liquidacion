@@ -90,7 +90,7 @@ const MyForm: React.FC = () => {
       <span>CTS: s/ {state.cts}</span>
       <span>Vacaciones Truncas: s/ {state.vacacionesTruncas}</span>
       <span>Gratificación Trunca: s/ {state.gratificationTrunca}</span>
-      <span>Total: <b>s/ {parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca)}</b></span>
+      <span>Total: <b>s/ { isNaN((parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca))) ? 0 : (parseFloat(state.cts) + parseFloat(state.vacacionesTruncas) + parseFloat(state.gratificationTrunca)).toString()}</b></span>
     </DefaultLayout>
   );
 };
