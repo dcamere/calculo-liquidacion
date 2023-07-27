@@ -43,7 +43,6 @@ const MyForm: React.FC = () => {
   }
 
   const handleCalculate = () => {
-    console.log(state.inputSueldoBruto)
     if (state.inputSueldoBruto !== "" && state.inputMesesEnEmpresa !== "" && state.inputVacacionesPendientes !== "" && state.inputDiasDesdeUltimaGratificacion !== "") {
       const sueldo = parseFloat(state.inputSueldoBruto);
       const mesesLaborados = parseFloat(state.inputMesesEnEmpresa);
